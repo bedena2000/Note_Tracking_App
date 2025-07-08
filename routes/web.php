@@ -9,7 +9,7 @@ Route::get("/login", function () {
 });
 
 Route::get("/register", function () {
-    return "register page";
+    return view('register.register');
 });
 
 

@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>Login Page</title>
+  <title>Register Page</title>
   @vite('resources/css/app.css')
 </head>
 <body>
@@ -17,15 +17,20 @@
       src="{{  Vite::asset('resources/images/authentication_image.png') }}" alt="background_image">
     </div>
 
-    <div class="flex items-center justify-center p-[26px] sm:p-[140px]">
-      <div>
-        <h3 class="text-[32px] mb-2.5">Login</h3>
-      <p class="text-white/60 mb-[30px]">You can login with your registered account or quick login with your Google account.</p>
+    <div class="flex w-full items-center p-[16px] sm:p-[140px]">
+      <div class="w-full">
+        <h3 class="text-[32px] mb-2.5">Register</h3>
+      <p class="text-white/60 mb-[30px]">Enter your user details below.</p>
 
       <form action="">
         <div class="flex flex-col gap-2.5">
           <label class="text-base font-semibold" for="username">Name</label>
           <input id="username" class="bg-[#33394F] rounded-sm px-10 py-[23px] text-white" type="text" placeholder="Enter username...">
+        </div>
+
+        <div class="flex flex-col gap-2.5 mt-8">
+          <label class="text-base font-semibold" for="email">Email</label>
+          <input id="email" class="bg-[#33394F] rounded-sm px-10 py-[23px] text-white" type="email" placeholder="Enter username...">
         </div>
 
         <div class="flex flex-col gap-2.5 mt-8">
@@ -39,11 +44,11 @@
         </div>
 
         <button class="mt-8 rounded-sm w-full cursor-pointer px-10 py-[23px] text-[#202433] font-semibold bg-[#DADADA]" type="submit">
-          Login
+          Register
         </button>
 
         <p class="mt-[55px] font-semibold text-white/60 text-center">
-          Don’t have an account? <a href="/register" class="text-[#FC728B]">Create one!</a>
+          Have an account? <a href="/login" class="text-[#FC728B]">Login!</a>
         </p>
 
       </form>
