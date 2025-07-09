@@ -14,7 +14,7 @@
     <div class="hidden lg:block">
       <img 
       class="w-full h-full object-cover"
-      src="{{  Vite::asset('resources/images/authentication_image.png') }}" alt="background_image">
+      src="{{  Vite::asset('resources/images/authentication_image_2.png') }}" alt="background_image">
     </div>
 
     <div class="flex items-center justify-center p-[26px] sm:p-[140px]">
@@ -22,21 +22,35 @@
         <h3 class="text-[32px] mb-2.5">Login</h3>
       <p class="text-white/60 mb-[30px]">You can login with your registered account or quick login with your Google account.</p>
 
-      <form action="">
+      <form action="{{ route('login') }}" method="POST">
+        @csrf
+
         <div class="flex flex-col gap-2.5">
           <label class="text-base font-semibold" for="username">Name</label>
-          <input id="username" class="bg-[#33394F] rounded-sm px-10 py-[23px] text-white" type="text" placeholder="Enter username...">
+          <input id="username" class="bg-[#33394F] rounded-sm px-10 py-[23px] text-white" type="text" placeholder="Enter username..." name="username">
         </div>
+
+        @error('username')
+          <p class="mt-4 text-white bg-green-800 rounded-md px-4 font-bold"> {{ $message }}</p>
+        @enderror
 
         <div class="flex flex-col gap-2.5 mt-8">
           <label class="text-base font-semibold" for="password">Password</label>
-          <input id="password" class="bg-[#33394F] rounded-sm px-10 py-[23px] text-white" type="password" placeholder="Enter password...">
+          <input id="password" class="bg-[#33394F] rounded-sm px-10 py-[23px] text-white" type="password" placeholder="Enter password..." name="password">
         </div>
 
+        @error('password')
+          <p class="mt-4 text-white bg-green-800 rounded-md px-4 font-bold"> {{ $message }}</p>
+        @enderror
+
         <div class="mt-8 flex gap-[15px]">
-          <input type="checkbox" name="rembemerme" id="">
-          <p class="font-semibold">Remember me</p>
+          <input type="checkbox" name="rembemerme" id="remember_me">
+          <label class="font-semibold" for="remember_me">Remember me</label>
         </div>
+
+        @if($errors->has('login_error'))
+          <p class="mt-4 text-white bg-green-800 rounded-md px-4 font-bold"> {{ $errors->first('login_error') }}</p>
+        @endif
 
         <button class="mt-8 rounded-sm w-full cursor-pointer px-10 py-[23px] text-[#202433] font-semibold bg-[#DADADA]" type="submit">
           Login
