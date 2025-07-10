@@ -44,7 +44,7 @@
         @enderror
 
         <div class="mt-8 flex gap-[15px]">
-          <input type="checkbox" name="rembemerme" id="remember_me">
+          <input type="checkbox" name="rememberme" id="remember_me">
           <label class="font-semibold" for="remember_me">Remember me</label>
         </div>
 

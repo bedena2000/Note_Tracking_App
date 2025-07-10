@@ -19,12 +19,24 @@ class LoginController extends Controller
         'password' => ['required']
       ]);
 
-      if(Auth::attempt(['name' => $request->username, 'password' => $request->password])) {
+      $remember_on = $request->rememberme == "on" ? true : false;
+
+
+      if(Auth::attempt(['name' => $request->username, 'password' => $request->password], $remember_on)) {
         $request->session()->regenerate();
 
         return redirect()->intended('/');
       }
 
       return back()->withErrors(['login_error' => 'Username or password are not correct']);
+    }
+
+    public function logout(Request $request) {
+      Auth::logout();
+
+      $request->session()->invalidate();
+      $request->session()->regenerateToken();
+
+      return redirect('/');
     }
 }
