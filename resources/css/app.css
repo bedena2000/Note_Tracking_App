@@ -1,3 +1,4 @@
+@import url("https://fonts.googleapis.com/css2?family=Barlow:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Fira+Code:wght@300..700&family=Source+Code+Pro:ital,wght@0,200..900;1,200..900&display=swap");
 @import "tailwindcss";
 
 @source '../../vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php';
@@ -13,4 +14,119 @@
 
 body {
     box-sizing: border-box;
+    font-family: "Source Code Pro", monospace;
 }
+
+/* Editor background and text */
+
+/* Make toolbar background transparent */
+.ql-toolbar {
+    background-color: transparent !important;
+    border-color: #ccc;
+}
+
+/* Make editor content area transparent with white text */
+.ql-container {
+    background-color: transparent !important;
+}
+
+.ql-editor {
+    background-color: transparent !important;
+    color: white !important;
+    height: auto !important;
+}
+
+.ql-editor::placeholder {
+    color: white !important;
+}
+
+.ql-editor.ql-blank::before {
+    color: white !important;
+}
+
+/* Force all buttons to have no background */
+.ql-toolbar button {
+    background-color: transparent !important;
+    border: none !important;
+}
+
+/* Force all icons inside toolbar buttons to be white */
+.ql-toolbar button svg {
+    fill: white !important;
+    stroke: white !important;
+    color: white !important;
+}
+
+/* When a button is active (like bold is on), keep it white */
+.ql-toolbar button.ql-active svg {
+    fill: white !important;
+    stroke: white !important;
+}
+
+/* On hover, keep background light transparent */
+.ql-toolbar button:hover {
+    background-color: rgba(255, 255, 255, 0.1) !important;
+}
+
+/* Dropdowns (font size, headers, etc.) white text and transparent bg */
+.ql-toolbar .ql-picker,
+.ql-toolbar .ql-picker-label,
+.ql-toolbar .ql-picker-options,
+.ql-toolbar .ql-picker-item {
+    color: white !important;
+    background-color: transparent !important;
+    border-color: #ccc !important;
+}
+
+/* Force Quill toolbar icons white by inverting them */
+.ql-toolbar button svg {
+    filter: invert(1);
+}
+
+
+/* Optional: remove dropdown arrow border */
+.ql-picker-label::before,
+.ql-picker-label::after {
+    color: white !important;
+}
+
+.ql-toolbar button {
+    background-color: transparent !important;
+    border: none !important;
+}
+
+.ql-toolbar button svg {
+    fill: white !important;
+    stroke: white !important;
+    color: white !important;
+    background-color: transparent !important;
+}
+
+.ql-toolbar button.ql-active svg {
+    fill: white !important;
+    stroke: white !important;
+}
+
+/* Dropdowns too */
+.ql-toolbar .ql-picker-label,
+.ql-toolbar .ql-picker-item {
+    color: white !important;
+    background-color: transparent !important;
+    border: none !important;
+}
+
+
+.ql-container {
+    background-color: transparent !important;
+    border: 1px solid #555;
+    height: 260px !important;
+}
+
+.ql-editor {
+    background-color: transparent !important;
+    color: white !important;
+    height: auto !important;
+}
+
+
+/* (Your existing toolbar/light theme rules can stay above or below) */

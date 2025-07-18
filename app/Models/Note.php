@@ -11,11 +11,14 @@ class Note extends Model
 {
     protected $fillable = [
         'title',
-        'content',
+        'context',
         'is_favourite',
         'is_trash',
-        'is_archived'
+        'is_archived',
+        'folder_id'
     ];
+
+    protected $table = "note";
 
     public function folder() {
         return $this->belongsTo(Folder::class);

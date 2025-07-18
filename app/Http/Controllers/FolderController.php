@@ -7,6 +7,17 @@ use App\Models\Folder;
 
 class FolderController extends Controller
 {
+    public function index(Request $request) { 
+
+        $currentFolderName = urldecode($request->path());
+
+        $folder = auth()->user()->folders()->where('name', $currentFolderName)->with('notes')->firstOrFail();
+
+        $notes = $folder->notes;
+
+        return view('pages.folder', ['notes' => $notes]);
+    }
+
     public function store(Request $request) {
 
         $validated = $request->validate([
@@ -17,6 +28,6 @@ class FolderController extends Controller
             'name' => $request->folder_name
         ]);
 
-        return redirect()->route('home');
+        return redirect()->route('folder', ['folderName' => $request->folder_name]);
     }
 }
