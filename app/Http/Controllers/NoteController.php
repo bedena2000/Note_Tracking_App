@@ -7,24 +7,35 @@ use App\Models\Note;
 
 class NoteController extends Controller
 {
-    public function store(Request $request, $folderName) {
+    public function store(Request $request, $folderName)
+    {
         $validated = $request->validate([
-            'note_content' => 'required',
-            'note_name' => 'required'
+            "note_content" => "required",
+            "note_name" => "required",
         ]);
 
-        $folder = auth()->user()->folders()->where('name', $folderName)->firstOrFail();
+        $folder = auth()
+            ->user()
+            ->folders()
+            ->where("name", $folderName)
+            ->firstOrFail();
 
         Note::create([
-            'title' => $request->note_name,
-            'context' => $request->note_content,
-            'is_favourite' => false,
-            'is_trash' => false,
-            'is_archived' => false,
-            'folder_id' => $folder->id
+            "title" => $request->note_name,
+            "context" => $request->note_content,
+            "is_favourite" => false,
+            "is_trash" => false,
+            "is_archived" => false,
+            "folder_id" => $folder->id,
         ]);
 
-
         return back();
+    }
+
+    public function update(Request $request)
+    {
+        $updatedHTMLContent = $request->_html_hidden_content;
+        $noteId = (int) $request->note_editor_modal_note_id_name;
+        $folderId = (int) $request->note_editor_modal_note_folder_id_name;
     }
 }

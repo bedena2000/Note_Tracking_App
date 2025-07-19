@@ -12,18 +12,15 @@ class Folder extends Model
 {
     protected $table = "folder";
 
-    protected $fillable = [
-        'name',
-        'user_id'
-    ];
+    protected $fillable = ["name", "user_id"];
 
-    public function user() {
-        return $this->belongTo(User::class);
+    public function user()
+    {
+        return $this->belongsTo(User::class);
     }
 
-    public function notes() {
+    public function notes()
+    {
         return $this->hasMany(Note::class);
     }
-    
-
 }
