@@ -62,20 +62,27 @@
                     </div>
 
                     <div class="mt-2 flex flex-col gap-[5px]">
-                        <div class="flex items-center gap-[15px] cursor-pointer hover:bg-white/8 px-1 py-2.5 rounded-md">
-                            <img src="{{ Vite::asset('resources/images/icons/star_icon.png') }}" alt="star_icon">
-                            <p class="text-white/60 font-semibold">Favorites</p>
-                        </div>
+                        <a href="/favourites">
+                            <div class="flex items-center gap-[15px] cursor-pointer hover:bg-white/8 px-1 py-2.5 rounded-md">
+                                <img src="{{ Vite::asset('resources/images/icons/star_icon.png') }}" alt="star_icon">
+                                <p class="text-white/60 font-semibold">Favorites</p>
+                            </div>
+                        </a>
 
-                        <div class="flex items-center gap-[15px] cursor-pointer hover:bg-white/8 px-1 py-2.5 rounded-md">
-                            <img src="{{ Vite::asset('resources/images/icons/trash_icon.png') }}" alt="star_icon">
-                            <p class="text-white/60 font-semibold">Trash</p>
-                        </div>
+                        <a href="/trash">
+                            <div class="flex items-center gap-[15px] cursor-pointer hover:bg-white/8 px-1 py-2.5 rounded-md">
+                                <img src="{{ Vite::asset('resources/images/icons/trash_icon.png') }}" alt="star_icon">
+                                <p class="text-white/60 font-semibold">Trash</p>
+                            </div>
+                        </a>
 
-                        <div class="flex items-center gap-[15px] cursor-pointer hover:bg-white/8 px-1 py-2.5 rounded-md">
-                            <img src="{{ Vite::asset('resources/images/icons/archive_icon.png') }}" alt="star_icon">
-                            <p class="text-white/60 font-semibold">Archived Notes</p>
-                        </div>
+                        <a href="archive">
+                            <div class="flex items-center gap-[15px] cursor-pointer hover:bg-white/8 px-1 py-2.5 rounded-md">
+                                <img src="{{ Vite::asset('resources/images/icons/archive_icon.png') }}" alt="star_icon">
+                                <p class="text-white/60 font-semibold">Archived Notes</p>
+                            </div>
+                        </a>
+
                     </div>
 
                 </div>

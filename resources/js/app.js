@@ -124,7 +124,7 @@ function generateNoteEditorContent(
             noteId;
         document.getElementById("note_editor_modal_note_folder_id_name").value =
             folderId;
-        quill.setText(noteContent);
+        quill.clipboard.dangerouslyPasteHTML(noteContent);
         noteTitleItem.textContent = noteTitle;
         noteCreatedAtItem.textContent = noteCreatedAt.split(" ")[0];
         noteCurrentFolder.textContent = currentFolder;

@@ -34,8 +34,61 @@ class NoteController extends Controller
 
     public function update(Request $request)
     {
+        $action = $request->input("action");
         $updatedHTMLContent = $request->_html_hidden_content;
         $noteId = (int) $request->note_editor_modal_note_id_name;
         $folderId = (int) $request->note_editor_modal_note_folder_id_name;
+
+        $note = Note::findOrFail($noteId);
+
+        if ($note->folder_id !== $folderId) {
+            return redirect()->back()->with("error", "Folder Mismatch");
+        }
+
+        if ($action === "favourite") {
+            $note->is_favourite = true;
+            $note->save();
+            return redirect()
+                ->back()
+                ->with("status", "note has been added to favourite");
+        }
+
+        if ($action === "archive") {
+            $note->is_archived = true;
+            $note->save();
+            return redirect()->back()->with("status", "note has been archived");
+        }
+
+        if ($action === "delete") {
+            $note->is_trash = true;
+            $note->save();
+            return redirect()->back()->with("status", "note deleted");
+        }
+
+        if ($action === "update") {
+            $note->context = $updatedHTMLContent;
+
+            $note->save();
+            return redirect()->back()->with("status", "note saved");
+        }
+    }
+
+    public function favourites()
+    {
+        $notes = Note::where("is_favourite", true)->orderBy("title")->get();
+
+        return view("pages.favourite", ["notes" => $notes]);
+    }
+
+    public function archive()
+    {
+        $notes = Note::where("is_archived", true)->orderBy("title")->get();
+        return view("pages.archive", ["notes" => $notes]);
+    }
+
+    public function trash()
+    {
+        $notes = Note::where("is_trash", true)->orderBy("title")->get();
+        return view("pages.trash", ["notes" => $notes]);
     }
 }

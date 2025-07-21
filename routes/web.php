@@ -25,6 +25,18 @@ Route::get("/", [HomeController::class, "index"])
     ->name("home")
     ->middleware("auth");
 
+Route::get("/favourites", [NoteController::class, "favourites"])
+    ->name("favourites")
+    ->middleware("auth");
+
+Route::get("/trash", [NoteController::class, "trash"])
+    ->name("trash")
+    ->middleware("auth");
+
+Route::get("/archive", [NoteController::class, "archive"])
+    ->name("archive")
+    ->middleware("auth");
+
 Route::get("/{folderName}", [FolderController::class, "index"])
     ->where(["folderName", "[A-Za-z]+"])
     ->name("folder")
@@ -43,6 +55,14 @@ Route::get("/{folderName}/{noteId}", function () {
 Route::post("/modify", [NoteController::class, "update"])
     ->name("note")
     ->middleware("auth");
+
+Route::post("/delete", [NoteController::class, "delete"])->name("note_delete");
+Route::post("/archive", [NoteController::class, "archive"])->name(
+    "note_archive",
+);
+Route::post("/favourite", [NoteController::class, "favourite"])->name(
+    "note_favourite",
+);
 
 Route::post("/create_folder/{folderName}", [
     NoteController::class,
