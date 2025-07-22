@@ -5,13 +5,13 @@
         {{ urldecode(request()->segment(1)) }}
         </h2>
 
-        <div class="mt-8 grid grid-cols-2 gap-x-6 gap-y-6">
+        <div class="mt-8 grid grid-cols-1 lg:grid-cols-1 gap-x-6 gap-y-6">
 
           @foreach($notes as $note)
 
             <form method="POST" action="{{ route('favourite_remove') }}">
                 @csrf
-                <div class="bg-white/3 p-5 flex flex-col gap-2.5 hover:bg-white/5 w-[600px] h-[600px] relative">
+                <div class="bg-white/3 p-5 flex flex-col gap-2.5 hover:bg-white/5 w-full lg:w-[600px] h-[600px] relative">
                 <div class="flex relative gap-2.5 flex-col">
                     <p class="text-white font-semibold text-[18px]">Title: {{ Str::limit($note->title, '22', '...') }}</p>
                     <p>Date: {{ $note->created_at->format('Y-m-d') }}</p>

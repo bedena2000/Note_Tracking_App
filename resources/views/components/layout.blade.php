@@ -12,7 +12,7 @@
 </head>
 <body>
 
-    <div class="min-h-screen flex bg-[#181818] text-white">
+    <div class="min-h-screen flex lg:flex-row flex-col  bg-[#181818] text-white">
 
         <div class="flex flex-2 flex-col justify-between px-5 py-8">
 
@@ -99,11 +99,11 @@
 
             <div id="new_folder_modal" class=" text-white font-semibold absolute w-full h-full top-0 left-0 flex justify-center items-center hidden">
                 <div class="absolute bg-black/70 w-full h-full" id="black_background_for_folder_create_modal"></div>
-                <form action="{{ route('folder_create')  }}" method="POST" class="z-[2000] bg-[#3C362A] p-4 rounded-lg">
+                <form action="{{ route('folder_create')  }}" method="POST" class="z-[2000] bg-[#3C362A] p-4 rounded-lg w-full m-4 md:w-[400px]">
                     @csrf
-                    <div class="flex items-start gap-4">
+                    <div class="flex items-start gap-4 md:flex-row flex-col">
                         <label for="create_folder_name" class="font-bold">Folder name</label>
-                        <input type="text" id="create_folder_name_input" class="border rounded-md border-gray-500 px-2" name="folder_name">
+                        <input type="text" id="create_folder_name_input" class="border md:w-auto w-full rounded-md border-gray-500 px-2" name="folder_name">
                     </div>
 
                     @error('folder_name')
@@ -121,14 +121,14 @@
 
             <div id="new_note_modal" class=" text-white font-semibold absolute w-full h-full top-0 left-0 flex justify-center items-center hidden">
                 <div class="absolute bg-black/70 w-full h-full" id="note_modal_background"></div>
-                <form action="{{ route('note_create', ['folderName' => urldecode(request()->path())])  }}" method="POST" class="z-[2000] bg-[#3C362A] p-4 rounded-lg">
+                <form action="{{ route('note_create', ['folderName' => urldecode(request()->path())])  }}" method="POST" class="z-[2000] bg-[#3C362A] p-4 rounded-lg md:w-auto w-full m-4">
                     @csrf
                     <div class="flex items-start justify-between gap-4 mb-6">
                         <label for="create_folder_name" class="font-bold">Note title</label>
                         <input type="text" id="create_folder_name_input" class="border rounded-md border-gray-500 px-2" name="note_name">
                     </div>
 
-                    <div id="note_editor" style="width: 400px !important; height: 300px !important; overflow: auto !important">
+                    <div id="note_editor" style="width: 100% !important; height: 300px !important; overflow: auto !important">
                     </div>
 
                     <input type="hidden" name="note_content" id="hidden_note_editor_content">

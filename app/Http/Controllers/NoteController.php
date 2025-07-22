@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Note;
+use Purifier;
 
 class NoteController extends Controller
 {
@@ -22,7 +23,7 @@ class NoteController extends Controller
 
         Note::create([
             "title" => $request->note_name,
-            "context" => $request->note_content,
+            "context" => \Mews\Purifier\Facades\Purifier::clean($request->note_content), // <- secure this
             "is_favourite" => false,
             "is_trash" => false,
             "is_archived" => false,
@@ -32,10 +33,11 @@ class NoteController extends Controller
         return back();
     }
 
+
     public function update(Request $request)
     {
         $action = $request->input("action");
-        $updatedHTMLContent = $request->_html_hidden_content;
+        $updatedHTMLContent = Purifier::clean($request->_html_hidden_content);
         $noteId = (int) $request->note_editor_modal_note_id_name;
         $folderId = (int) $request->note_editor_modal_note_folder_id_name;
 
