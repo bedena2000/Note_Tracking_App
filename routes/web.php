@@ -60,14 +60,22 @@ Route::post("/delete", [NoteController::class, "delete"])->name("note_delete");
 Route::post("/archive", [NoteController::class, "archive"])->name(
     "note_archive",
 );
+
 Route::post("/favourite", [NoteController::class, "favourite"])->name(
     "note_favourite",
 );
+
+Route::post("/favourite/remove", [NoteController::class, "favourite_remove"])
+    ->name("favourite_remove")
+    ->middleware("auth");
 
 Route::post("/create_folder/{folderName}", [
     NoteController::class,
     "store",
 ])->name("note_create");
+
+Route::post("/delete_note", [NoteController::class, 'delete_note'])->name('delete_note')->middleware('auth');
+Route::post("/archive/remove", [NoteController::class, "remove_from_archive"])->name("archive_remove")->middleware('auth');
 
 // Error Page
 

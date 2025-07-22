@@ -9,19 +9,30 @@
 
           @foreach($notes as $note)
 
-            <div class="bg-white/3 p-5 flex flex-col gap-2.5 hover:bg-white/5 w-[600px] h-[600px]">
-              <div class="flex relative gap-2.5 flex-col">
-                  <p class="text-white font-semibold text-[18px]">Title: {{ Str::limit($note->title, '22', '...') }}</p>
-                  <p>Date: {{ $note->created_at->format('Y-m-d') }}</p>
-              </div>
+            <form method="POST" action="{{ route('favourite_remove') }}">
+                @csrf
+                <div class="bg-white/3 p-5 flex flex-col gap-2.5 hover:bg-white/5 w-[600px] h-[600px] relative">
+                <div class="flex relative gap-2.5 flex-col">
+                    <p class="text-white font-semibold text-[18px]">Title: {{ Str::limit($note->title, '22', '...') }}</p>
+                    <p>Date: {{ $note->created_at->format('Y-m-d') }}</p>
+                </div>
+
+                <button type="submit"
+                    class="absolute right-6 border bg-emerald-800 px-2 hover:bg-emerald-600 text-white rounded-md cursor-pointer outline-none border-none"
+                >
+                    Remove from favourites
+                </button>
 
 
-              <div class="overflow-auto">
-                  {!! $note->context !!}
-              </div>
+                <div class="overflow-auto">
+                    {!! $note->context !!}
+                </div>
 
-              <input type="hidden" data-note_item_id="{{ $note->id }}" data-note_item_folder_id={{ $note->folder_id }} data-note_content="{{ $note->context }}" data-note_title="{{ $note->title }}" data-note_created_at="{{ $note->created_at }}" data-current_folder="{{ urldecode(request()->segment(1)) }}">
-            </div>
+                <input type="hidden" name="note_item_id" value="{{  $note->id }}">
+
+                <input type="hidden" data-note_item_id="{{ $note->id }}" data-note_item_folder_id={{ $note->folder_id }} data-note_content="{{ $note->context }}" data-note_title="{{ $note->title }}" data-note_created_at="{{ $note->created_at }}" data-current_folder="{{ urldecode(request()->segment(1)) }}">
+                </div>
+            </form>
 
           @endforeach
 

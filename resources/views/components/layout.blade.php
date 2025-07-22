@@ -19,10 +19,6 @@
             <div>
                 <div class="flex items-center justify-between">
                     <p>{{ $user->name ?? 'Guest' }}</p>
-                    <div class="cursor-pointer">
-                        <img src="{{ Vite::asset('resources/images/icons/search_icon.png') }}" alt="search_icon">
-                    </div>
-
                 </div>
 
                 <div class="flex items-center justify-center text-white rounded-md bg-white/5 w-full py-2.5 mt-8 cursor-pointer hover:bg-white/10 {{ urldecode(request()->path()) == "/" ? 'hidden' : '' }}" id="new_note_item" id="note_create">

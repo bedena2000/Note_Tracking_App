@@ -71,6 +71,8 @@ class NoteController extends Controller
             $note->save();
             return redirect()->back()->with("status", "note saved");
         }
+
+        return redirect()->back();
     }
 
     public function favourites()
@@ -80,15 +82,49 @@ class NoteController extends Controller
         return view("pages.favourite", ["notes" => $notes]);
     }
 
+    public function favourite_remove(Request $request)
+    {
+
+        $noteId = (int) $request->note_item_id;
+       
+        $note = Note::findOrFail($noteId);
+
+        $note->is_favourite = false;
+        $note->save();
+
+        return redirect()->back();
+    }
+
     public function archive()
     {
         $notes = Note::where("is_archived", true)->orderBy("title")->get();
         return view("pages.archive", ["notes" => $notes]);
     }
 
+    public function remove_from_archive(Request $request) {
+        $noteId = (int) $request->note_item_id;
+       
+        $note = Note::findOrFail($noteId);
+
+        $note->is_archived = false;
+        $note->save();
+
+        return redirect()->back();
+    }
+
     public function trash()
     {
         $notes = Note::where("is_trash", true)->orderBy("title")->get();
         return view("pages.trash", ["notes" => $notes]);
+    }
+
+    public function delete_note(Request $request) {
+        $noteId = (int) $request->note_item_id;
+       
+        $note = Note::findOrFail($noteId);
+
+        $note->delete();
+
+        return redirect()->back();
     }
 }
